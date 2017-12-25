@@ -141,9 +141,8 @@ aside.sidebar ul:first-child > li:nth-child(3) > p {
 }
 
 aside.sidebar ul li.active > a {
-  border: 0;
   color: #3d78e8;
-  border-left: 4px solid;
+  border-right: 4px solid;
   background-color: rgba(61, 120, 232, 0.05);
 }
 

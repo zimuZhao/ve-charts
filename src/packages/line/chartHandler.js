@@ -1,16 +1,19 @@
-import { formatMeasure } from '../../utils'
-import { isUndefined } from 'lodash'
+import {formatMeasure} from '../../utils'
+import {isUndefined} from 'lodash'
 
-function getLineTooltip (args) {
+function getLineTooltip(args) {
+  const {data, settings} = args
+  const {measure} = data
+  const {legendType, legendPadding} = settings
   return {
     trigger: 'axis'
   }
 }
 
-function getLineLegend (args) {
-  const { data, settings } = args
-  const { measure } = data
-  const { legendType, legendPadding } = settings
+function getLineLegend(args) {
+  const {data, settings} = args
+  const {measure} = data
+  const {legendType, legendPadding} = settings
   return {
     type: legendType || 'plain',
     padding: legendPadding || 5,
@@ -18,8 +21,8 @@ function getLineLegend (args) {
   }
 }
 
-function getLineDimAxis (args) {
-  const { data, settings } = args
+function getLineDimAxis(args) {
+  const {data, settings} = args
   const type = settings.yAxisType || 'category'
   return {
     type,
@@ -35,9 +38,9 @@ function getLineDimAxis (args) {
   }
 }
 
-function getLineMeaAxis (args) {
-  const { settings } = args
-  const { yAxisScale } = settings
+function getLineMeaAxis(args) {
+  const {settings} = args
+  const {yAxisScale} = settings
 
   return {
     type: 'value',
@@ -54,8 +57,8 @@ function getLineMeaAxis (args) {
 }
 
 function getLineSeries(args) {
-  const { data, settings } = args
-  const { measure } = data
+  const {data, settings} = args
+  const {measure} = data
   const {
     symbolSize,
     smooth,
@@ -65,7 +68,7 @@ function getLineSeries(args) {
   const series = []
   const dataIndex = connect ? connect.dataIndex : -1
 
-  function getLineStyle (lineParams) {
+  function getLineStyle(lineParams) {
     return {
       normal: {
         width: 2
@@ -73,7 +76,7 @@ function getLineSeries(args) {
     }
   }
 
-  measure.forEach(({ name, data }, i) => {
+  measure.forEach(({name, data}, i) => {
     series.push({
       data: dataIndex === -1 ? data : getSeriesData(data, {
         index: i,
@@ -123,26 +126,20 @@ function getSeriesData(data, options) {
 }
 
 export const line = (data, settings, extra) => {
-  const { tooltipVisible, legendVisible } = extra
+  const {tooltipVisible, legendVisible} = extra
 
-  const tooltip = tooltipVisible && getLineTooltip()
+  const tooltip = tooltipVisible && getLineTooltip({data, settings})
 
-  const legend = legendVisible && getLineLegend({ data, settings })
+  const legend = legendVisible && getLineLegend({data, settings})
 
-  const xAxis = getLineDimAxis({ data, settings })
+  const xAxis = getLineDimAxis({data, settings})
 
-  const yAxis = getLineMeaAxis({ data, settings })
+  const yAxis = getLineMeaAxis({data, settings})
 
-  const series = getLineSeries({ data, settings })
+  const series = getLineSeries({data, settings})
 
   // build echarts options
-  const options = {
-    tooltip,
-    legend,
-    xAxis,
-    yAxis,
-    series
-  }
+  const options = {tooltip, legend, xAxis, yAxis, series}
 
   return options
 }

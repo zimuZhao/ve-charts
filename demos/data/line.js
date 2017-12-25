@@ -13,22 +13,50 @@ export default {
   name: '折线图',
   type: 'line',
   chartData: [
+    // {
+    //   title: '简单折线图',
+    //   data: baseData,
+    //   settings: {}
+    // },
+    // {
+    //   title: '显示文本标签',
+    //   data: baseData,
+    //   settings: {
+    //     labelStyle: {
+    //       showLabel: true,
+    //       labelPosition: 'top',
+    //       labelFontSize: '12px',
+    //       labelFontWeight: 'bold'
+    //     }
+    //   },
+    //   extra: {
+    //     tooltipVisible: '',
+    //     legendVisible: ''
+    //   }
+    // },
     {
-      title: '简单折线图',
-      data: baseData,
-      settings: {}
-    },
-    {
-      title: '显示文本标签',
+      title: '双Y轴折线图',
       data: baseData,
       settings: {
-        labelStyle: {
-          showLabel: true,
-          labelPosition: 'top',
-          labelFontSize: '12px',
-          labelFontWeight: 'bold'
+        legendType: 'scroll',  // 'scroll' 图例较多时滚动 | 'plain' 普通图例（缺省值）
+        legendPadding: 10,
+        yAxisType: 'category',  // 'value' 数值轴 | 'category' 类目轴 | 'time' 时间轴 | 'log' 对数轴
+        yAxisScale: false, // 只在数值轴中（type: 'value'）有效
+        symbolSize: 10,
+        smooth: true,
+        symbol: 'circle',  // circle'|'rect'|'roundRect'|'triangle'|'diamond'|'pin'|'arrow'
+        connect: {
+          dataIndex: 0,
+          seriesIndex: 0,
+          symbolSize: 100,
+          normalShadowBlur: 200
         }
+      },
+      extra: {
+        tooltipVisible: true,
+        legendVisible: false
       }
     }
+
   ]
 }
