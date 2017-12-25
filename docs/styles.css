@@ -44,6 +44,11 @@ section.cover .cover-main > p:last-child a:last-child:hover {
   background-color: #fff;
 }
 
+section.cover .cover-main > ul > li > code {
+  font-family: 'Avenir', Helvetica, Arial, sans-serif;
+  font-weight: 600;
+}
+
 @keyframes line-repetition {
   from {
     top: 0;
@@ -158,4 +163,10 @@ aside.sidebar ul li.active > a:before {
   border-radius: 50%;
   background-color: #fed24a;
   box-shadow: 0 0 0 3px rgba(254, 210, 74, 0.4);
+}
+
+section.content .vuep-preview {
+  position: relative;
+  width: 50%;
+  height: 400px;
 }
