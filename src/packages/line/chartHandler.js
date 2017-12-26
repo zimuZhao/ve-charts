@@ -2,9 +2,9 @@ import {formatMeasure} from '../../utils'
 import {isUndefined} from 'lodash'
 
 function getLineTooltip(args) {
-  const {data, settings} = args
-  const {measure} = data
-  const {legendType, legendPadding} = settings
+  // const {data, settings} = args
+  // const {measure} = data
+  // const {legendType, legendPadding} = settings
   return {
     trigger: 'axis'
   }
